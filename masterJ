@@ -1,0 +1,1146 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Jennius要成為日語大師 🌸 Japanese Master</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        sakura: {
+                            50: '#fff5f7',
+                            100: '#ffe3ec',
+                            200: '#fcc2d7',
+                            300: '#f7a8c4',
+                            400: '#f783ac',
+                            500: '#e64980',
+                            600: '#d6336c',
+                        },
+                        matcha: {
+                            50: '#f4fbf7',
+                            100: '#e2f7eb',
+                            200: '#c3fae0',
+                            400: '#81c784',
+                            500: '#51cf66',
+                            600: '#40c057',
+                        },
+                        momi: '#ff922b',
+                        dango: '#fcc419'
+                    },
+                    fontFamily: {
+                        sans: ['"M PLUS Rounded 1c"', '"Zen Maru Gothic"', 'Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Google Fonts & Font Awesome Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800;900&family=Zen+Maru+Gothic:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        * {
+            -webkit-tap-highlight-color: transparent;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #fffaf2;
+            background-image: radial-gradient(#ffd8e4 0.9px, transparent 0.9px), radial-gradient(#ffd8e4 0.9px, #fffaf2 0.9px);
+            background-size: 28px 28px;
+            background-position: 0 0, 14px 14px;
+            font-family: 'M PLUS Rounded 1c', 'Zen Maru Gothic', sans-serif;
+            user-select: text;
+            padding-bottom: 80px; /* Space for mobile navigation bar */
+        }
+
+        @media (min-width: 768px) {
+            body {
+                padding-bottom: 20px;
+            }
+        }
+
+        /* Hide scrollbars for slick app view */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Bouncy touch animation */
+        .touch-bounce {
+            transition: transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.15s ease;
+        }
+        .touch-bounce:active {
+            transform: scale(0.95);
+        }
+
+        /* Clickable interactive Japanese word styling */
+        .jp-word {
+            cursor: pointer;
+            border-bottom: 2px dashed #f783ac;
+            transition: all 0.15s ease;
+            display: inline-block;
+            padding: 0 2px;
+            border-radius: 4px;
+            font-weight: 700;
+        }
+        .jp-word:hover, .jp-word:active {
+            background-color: #ffe3ec;
+            color: #d6336c;
+        }
+
+        /* Ruby furigana formatting */
+        ruby {
+            ruby-position: over;
+        }
+        rt {
+            font-size: 0.62em;
+            color: #e64980;
+            font-weight: bold;
+        }
+
+        /* Cute Card UI */
+        .cute-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 2.5px solid #ffe3ec;
+            box-shadow: 0 8px 20px rgba(247, 131, 172, 0.1);
+        }
+
+        /* Pulse voice recording ring */
+        @keyframes pulse-ring {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(230, 73, 128, 0.7); }
+            70% { transform: scale(1.08); box-shadow: 0 0 0 14px rgba(230, 73, 128, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(230, 73, 128, 0); }
+        }
+        .recording-active {
+            animation: pulse-ring 1.4s infinite;
+            background-color: #e64980 !important;
+            color: white !important;
+        }
+
+        /* Level path connector lines */
+        .stage-connector {
+            width: 4px;
+            height: 32px;
+            background: #fcc2d7;
+            margin: 0 auto;
+            border-radius: 2px;
+        }
+    </style>
+</head>
+<body class="text-gray-800 min-h-screen flex flex-col justify-between selection:bg-sakura-200 selection:text-sakura-600">
+
+    <!-- Navigation Header -->
+    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b-2 border-sakura-200 shadow-sm">
+        <div class="max-w-4xl mx-auto px-4 h-16 sm:h-20 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <div class="flex items-center gap-2.5 cursor-pointer" onclick="switchTab('map')">
+                <div class="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-tr from-sakura-500 to-sakura-400 text-white rounded-2xl flex items-center justify-center text-xl sm:text-2xl shadow-md transform -rotate-3">
+                    🍡
+                </div>
+                <div>
+                    <h1 class="font-extrabold text-lg sm:text-2xl text-sakura-600 tracking-wide flex items-center gap-1.5">
+                        日語大師
+                        <span class="text-[10px] sm:text-xs font-bold bg-matcha-100 text-matcha-600 px-2 py-0.5 rounded-full border border-matcha-200">Gamified SRS</span>
+                    </h1>
+                    <p class="text-[10px] sm:text-xs text-gray-400 font-medium hidden sm:block">沉浸式情境 · 闖關遊戲 · 智慧語音對話</p>
+                </div>
+            </div>
+
+            <!-- Top Level & User Stats Badge -->
+            <div class="flex items-center gap-2">
+                <div class="bg-sakura-50 border border-sakura-200 rounded-2xl px-3 py-1 flex items-center gap-2 shadow-sm">
+                    <span class="text-xs sm:text-sm font-black text-sakura-600 flex items-center gap-1">
+                        <i class="fa-solid fa-fire text-momi"></i> <span id="user-streak">1</span> 天
+                    </span>
+                    <span class="text-gray-300">|</span>
+                    <span class="text-xs sm:text-sm font-black text-matcha-600 flex items-center gap-1">
+                        <i class="fa-solid fa-bolt text-dango"></i> <span id="user-xp">120</span> XP
+                    </span>
+                </div>
+
+                <button onclick="openApiKeyModal()" class="w-9 h-9 sm:w-10 sm:h-10 bg-sakura-100 hover:bg-sakura-200 text-sakura-600 rounded-2xl flex items-center justify-center text-xs sm:text-sm font-bold transition">
+                    <i class="fa-solid fa-gear"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Desktop Navigation Bar -->
+        <nav class="hidden md:flex justify-center border-t border-sakura-100 py-2 bg-sakura-50/50">
+            <div class="flex gap-2">
+                <button onclick="switchTab('map')" id="nav-map" class="nav-btn px-4 py-2 rounded-xl font-bold text-xs text-sakura-600 bg-sakura-100 flex items-center gap-2">
+                    <i class="fa-solid fa-route"></i> 闖關地圖
+                </button>
+                <button onclick="switchTab('game')" id="nav-game" class="nav-btn px-4 py-2 rounded-xl font-bold text-xs text-gray-600 hover:bg-sakura-50 flex items-center gap-2">
+                    <i class="fa-solid fa-gamepad"></i> 遊戲冒險
+                </button>
+                <button onclick="switchTab('themes')" id="nav-themes" class="nav-btn px-4 py-2 rounded-xl font-bold text-xs text-gray-600 hover:bg-sakura-50 flex items-center gap-2">
+                    <i class="fa-solid fa-layer-group"></i> 多元主題庫
+                </button>
+                <button onclick="switchTab('speaking')" id="nav-speaking" class="nav-btn px-4 py-2 rounded-xl font-bold text-xs text-gray-600 hover:bg-sakura-50 flex items-center gap-2">
+                    <i class="fa-solid fa-comments"></i> AI語音教練
+                </button>
+                <button onclick="switchTab('notebook')" id="nav-notebook" class="nav-btn px-4 py-2 rounded-xl font-bold text-xs text-gray-600 hover:bg-sakura-50 flex items-center gap-2">
+                    <i class="fa-solid fa-bookmark"></i> 單字筆記
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="max-w-4xl mx-auto px-4 py-6 flex-1 w-full">
+
+        <!-- ================= TAB 1: 關卡闖關地圖 (ROADMAP STAGES) ================= -->
+        <section id="tab-map" class="tab-content space-y-6">
+
+            <!-- Hero Welcome Card -->
+            <div class="cute-card rounded-3xl p-5 sm:p-6 bg-gradient-to-br from-sakura-100 via-white to-matcha-50 relative overflow-hidden">
+                <div class="relative z-10 space-y-2">
+                    <div class="inline-flex items-center gap-1.5 bg-sakura-500 text-white text-[10px] sm:text-xs font-bold px-3 py-1 rounded-full shadow-sm">
+                        <span>🎯 循序漸進關卡模式</span>
+                    </div>
+                    <h2 class="text-xl sm:text-2xl font-black text-gray-800">歡迎來到日語遊戲學習大本營！</h2>
+                    <p class="text-xs sm:text-sm text-gray-600 leading-relaxed">
+                        從五十音、生活點餐、動漫影視到時事新聞，點擊關卡進行情境學習，並至「遊戲冒險」快速驗收！
+                    </p>
+                </div>
+            </div>
+
+            <!-- Stage Map Nodes -->
+            <div class="space-y-4 py-2">
+                <h3 class="text-lg font-bold text-gray-800 flex items-center justify-between">
+                    <span class="flex items-center gap-2"><i class="fa-solid fa-map-location-dot text-sakura-500"></i> 關卡解鎖進度</span>
+                    <span class="text-xs text-gray-500 font-normal">共 9 個經典階段</span>
+                </h3>
+
+                <div id="roadmap-tree" class="flex flex-col items-center space-y-3">
+                    <!-- Dynamically generated stage cards will go here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= TAB 2: 遊戲冒險 (GAMIFIED QUIZ) ================= -->
+        <section id="tab-game" class="tab-content hidden space-y-6">
+            <div class="cute-card rounded-3xl p-5 sm:p-6 bg-white space-y-5 relative">
+                
+                <!-- Game Header Status Bar -->
+                <div class="flex items-center justify-between border-b border-sakura-100 pb-3">
+                    <div class="flex items-center gap-1.5 text-red-500 font-bold text-sm" id="game-lives">
+                        <i class="fa-solid fa-heart"></i>
+                        <i class="fa-solid fa-heart"></i>
+                        <i class="fa-solid fa-heart"></i>
+                    </div>
+
+                    <div class="bg-sakura-50 text-sakura-600 px-3 py-1 rounded-xl text-xs font-black border border-sakura-200">
+                        連勝 Streak: <span id="game-combo" class="text-sm">0</span> 🔥
+                    </div>
+
+                    <div class="text-xs font-bold text-gray-500">
+                        得分: <span id="game-score" class="text-sakura-600 font-extrabold text-base">0</span>
+                    </div>
+                </div>
+
+                <!-- Quiz Main Area -->
+                <div id="quiz-container" class="space-y-6 text-center py-4">
+                    <div class="space-y-1">
+                        <span id="quiz-category" class="bg-matcha-100 text-matcha-600 text-[10px] font-bold px-2.5 py-0.5 rounded-full">階段 1 · 打招呼</span>
+                        <h3 id="quiz-question-jp" class="text-3xl sm:text-4xl font-black text-gray-800 tracking-wider">こんにちは</h3>
+                        <p id="quiz-question-kana" class="text-xs text-sakura-500 font-bold">kon-ni-chi-wa</p>
+                    </div>
+
+                    <p id="quiz-prompt" class="text-sm text-gray-600 font-medium">這句話在中文裡是什麼意思呢？</p>
+
+                    <!-- Answer Options Grid -->
+                    <div id="quiz-options" class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+                        <!-- Injected via JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Game Result Modal / Overlay -->
+                <div id="game-over-box" class="hidden text-center py-8 space-y-4">
+                    <div class="text-5xl">🎉</div>
+                    <h3 class="text-2xl font-black text-gray-800">闖關測試完成！</h3>
+                    <p class="text-xs text-gray-600">你獲得了 <span id="final-score" class="text-sakura-600 font-extrabold">100</span> 分與 <span id="final-xp" class="text-matcha-600 font-extrabold">+30 XP</span>！</p>
+                    <button onclick="startQuizGame()" class="bg-sakura-500 hover:bg-sakura-600 text-white font-bold px-6 py-3 rounded-2xl text-xs shadow-md touch-bounce">
+                        <i class="fa-solid fa-rotate-right"></i> 再挑戰一次
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= TAB 3: 多元主題學習庫 (MULTI-THEME CONTENT) ================= -->
+        <section id="tab-themes" class="tab-content hidden space-y-6">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                <div>
+                    <h2 class="text-xl font-extrabold text-gray-800 flex items-center gap-2">
+                        <i class="fa-solid fa-layer-group text-sakura-500"></i> 多元情境與主題教學
+                    </h2>
+                    <p class="text-xs text-gray-500 mt-0.5">點擊任何主題探索單字、句型與真人語音示範</p>
+                </div>
+
+                <!-- Theme Category Scroll Filter -->
+                <div class="flex gap-2 overflow-x-auto no-scrollbar pb-1">
+                    <button onclick="renderThemeContent('all')" class="theme-tab-btn bg-sakura-500 text-white px-3 py-1.5 rounded-xl text-xs font-bold whitespace-nowrap">全部</button>
+                    <button onclick="renderThemeContent('food')" class="theme-tab-btn bg-gray-100 text-gray-600 px-3 py-1.5 rounded-xl text-xs font-bold whitespace-nowrap">🍱 美食點餐</button>
+                    <button onclick="renderThemeContent('anime')" class="theme-tab-btn bg-gray-100 text-gray-600 px-3 py-1.5 rounded-xl text-xs font-bold whitespace-nowrap">⚔️ 動漫影視</button>
+                    <button onclick="renderThemeContent('travel')" class="theme-tab-btn bg-gray-100 text-gray-600 px-3 py-1.5 rounded-xl text-xs font-bold whitespace-nowrap">⛩️ 旅遊交通</button>
+                    <button onclick="renderThemeContent('news')" class="theme-tab-btn bg-gray-100 text-gray-600 px-3 py-1.5 rounded-xl text-xs font-bold whitespace-nowrap">📰 時事新聞</button>
+                </div>
+            </div>
+
+            <div id="theme-cards-container" class="space-y-4">
+                <!-- Javascript will inject theme content here -->
+            </div>
+        </section>
+
+        <!-- ================= TAB 4: AI 語音教練 (AI SPEAKING COACH) ================= -->
+        <section id="tab-speaking" class="tab-content hidden space-y-6">
+            <div>
+                <h2 class="text-xl font-extrabold text-gray-800 flex items-center gap-2">
+                    <i class="fa-solid fa-comments text-sakura-500"></i> AI 語音互動教練
+                </h2>
+                <p class="text-xs text-gray-500 mt-0.5">選擇生活情境或自由開口說日文，AI 將協助矯正語法與發音！</p>
+            </div>
+
+            <div class="cute-card rounded-3xl p-4 sm:p-6 bg-white space-y-4">
+                <!-- Chat Log View -->
+                <div id="chat-messages" class="h-80 sm:h-96 overflow-y-auto space-y-3 pr-1 text-xs sm:text-sm">
+                    <div class="flex gap-2.5">
+                        <div class="w-8 h-8 rounded-2xl bg-sakura-200 text-sakura-600 flex items-center justify-center text-sm font-black flex-shrink-0">🍡</div>
+                        <div class="bg-sakura-50 border border-sakura-200 rounded-2xl p-3 text-gray-800 max-w-[85%] space-y-1">
+                            <p class="font-bold text-sakura-600">こんにちは！私（わたし）と一緒に日本語（にほんご）を話（はな）しましょう！</p>
+                            <p class="text-gray-500 text-[11px]">（你好呀！跟我一起練習說日文吧！）</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Input Box Bar -->
+                <div class="border-t border-sakura-100 pt-3 flex items-center gap-2">
+                    <input type="text" id="chat-text-input" placeholder="輸入日文或中文對話..." class="flex-1 bg-sakura-50 border border-sakura-200 rounded-2xl px-3.5 py-2.5 text-xs sm:text-sm focus:outline-none focus:border-sakura-400">
+
+                    <button id="record-btn" onclick="toggleVoiceRecording()" class="w-10 h-10 bg-sakura-500 hover:bg-sakura-600 text-white rounded-2xl flex items-center justify-center transition shadow-sm touch-bounce flex-shrink-0">
+                        <i class="fa-solid fa-microphone text-sm"></i>
+                    </button>
+
+                    <button onclick="sendChatMessage()" class="w-10 h-10 bg-matcha-500 hover:bg-matcha-600 text-white rounded-2xl flex items-center justify-center transition shadow-sm touch-bounce flex-shrink-0">
+                        <i class="fa-solid fa-paper-plane text-sm"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= TAB 5: 單字筆記 (DICTIONARY NOTEBOOK) ================= -->
+        <section id="tab-notebook" class="tab-content hidden space-y-6">
+            <div class="flex justify-between items-center">
+                <div>
+                    <h2 class="text-xl font-extrabold text-gray-800 flex items-center gap-2">
+                        <i class="fa-solid fa-bookmark text-sakura-500"></i> 我的單字筆記庫
+                    </h2>
+                    <p class="text-xs text-gray-500 mt-0.5">點擊文章或例句中的單字即可自動收錄至此</p>
+                </div>
+                <button onclick="clearSavedWords()" class="text-xs bg-gray-100 hover:bg-gray-200 text-gray-600 font-bold px-3 py-1.5 rounded-xl transition">
+                    清空筆記
+                </button>
+            </div>
+
+            <div id="saved-words-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
+                <!-- Javascript will inject saved word cards here -->
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Mobile Bottom Navigation Bar (Fixed for Mobile Screens) -->
+    <div class="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-t border-sakura-200 py-2 px-3 flex justify-around items-center shadow-lg">
+        <button onclick="switchTab('map')" id="m-nav-map" class="flex flex-col items-center gap-0.5 text-sakura-600">
+            <i class="fa-solid fa-route text-lg"></i>
+            <span class="text-[10px] font-bold">闖關</span>
+        </button>
+        <button onclick="switchTab('game')" id="m-nav-game" class="flex flex-col items-center gap-0.5 text-gray-400">
+            <i class="fa-solid fa-gamepad text-lg"></i>
+            <span class="text-[10px] font-bold">冒險遊戲</span>
+        </button>
+        <button onclick="switchTab('themes')" id="m-nav-themes" class="flex flex-col items-center gap-0.5 text-gray-400">
+            <i class="fa-solid fa-layer-group text-lg"></i>
+            <span class="text-[10px] font-bold">主題庫</span>
+        </button>
+        <button onclick="switchTab('speaking')" id="m-nav-speaking" class="flex flex-col items-center gap-0.5 text-gray-400">
+            <i class="fa-solid fa-comments text-lg"></i>
+            <span class="text-[10px] font-bold">AI 語音</span>
+        </button>
+        <button onclick="switchTab('notebook')" id="m-nav-notebook" class="flex flex-col items-center gap-0.5 text-gray-400">
+            <i class="fa-solid fa-bookmark text-lg"></i>
+            <span class="text-[10px] font-bold">單字筆記</span>
+        </button>
+    </div>
+
+    <!-- POPUP DICTIONARY MODAL -->
+    <div id="dict-modal" class="fixed inset-0 z-50 bg-black/40 backdrop-blur-xs flex items-center justify-center p-4 hidden">
+        <div class="cute-card bg-white rounded-3xl max-w-sm w-full p-5 space-y-4 relative shadow-2xl animate-bounce-in">
+            <!-- Close Button -->
+            <button onclick="closeDictModal()" class="absolute top-4 right-4 w-7 h-7 bg-gray-100 text-gray-500 rounded-full flex items-center justify-center text-xs">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <!-- Word Info Header -->
+            <div class="flex items-center gap-3">
+                <div class="w-11 h-11 bg-sakura-100 text-sakura-600 rounded-2xl flex items-center justify-center text-xl font-black">
+                    🌸
+                </div>
+                <div>
+                    <span id="dict-pos" class="bg-sakura-100 text-sakura-600 text-[10px] font-bold px-2 py-0.5 rounded">單字</span>
+                    <h3 id="dict-word" class="text-2xl font-black text-gray-800">櫻</h3>
+                </div>
+            </div>
+
+            <!-- Phonetics Box with Accurate Romaji -->
+            <div class="bg-sakura-50 rounded-2xl p-3 flex items-center justify-between border border-sakura-100">
+                <div class="space-y-0.5">
+                    <div class="text-xs text-gray-500">日文假名：<span id="dict-kana" class="font-bold text-sakura-600 text-sm">さくら</span></div>
+                    <div class="text-xs text-gray-500">精準羅馬音：<span id="dict-romaji" class="font-bold text-gray-800 text-xs tracking-wide">sakura</span></div>
+                </div>
+                <button id="dict-audio-btn" onclick="playCurrentDictAudio(event)" class="w-10 h-10 bg-sakura-500 hover:bg-sakura-600 text-white rounded-xl flex items-center justify-center transition shadow-sm touch-bounce">
+                    <i class="fa-solid fa-volume-high text-sm"></i>
+                </button>
+            </div>
+
+            <!-- Chinese Meaning -->
+            <div>
+                <span class="text-[10px] font-bold text-gray-400 uppercase tracking-wider">【中文意思】</span>
+                <p id="dict-meaning" class="text-base font-bold text-gray-800">櫻花</p>
+            </div>
+
+            <!-- Example Sentence -->
+            <div class="bg-gray-50 p-3 rounded-2xl border border-gray-100 text-xs space-y-1">
+                <span class="font-bold text-sakura-600">💡 記憶聯想 / 例句：</span>
+                <p id="dict-example-jp" class="font-bold text-gray-800">日本の桜はとても綺麗です。</p>
+                <p id="dict-example-zh" class="text-gray-500">（日本的櫻花非常美麗。）</p>
+            </div>
+
+            <!-- Save Word Button -->
+            <button onclick="saveCurrentWord()" class="w-full bg-matcha-500 hover:bg-matcha-600 text-white font-bold py-2.5 rounded-2xl text-xs flex items-center justify-center gap-2 transition shadow-md touch-bounce">
+                <i class="fa-solid fa-bookmark"></i> 收藏至「單字筆記」
+            </button>
+        </div>
+    </div>
+
+    <!-- API Key Settings Modal -->
+    <div id="apikey-modal" class="fixed inset-0 z-50 bg-black/40 backdrop-blur-xs flex items-center justify-center p-4 hidden">
+        <div class="cute-card bg-white rounded-3xl max-w-xs w-full p-5 space-y-4">
+            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
+                <i class="fa-solid fa-gear text-sakura-500"></i> API 設定
+            </h3>
+            <p class="text-xs text-gray-500 leading-relaxed">輸入您的 Gemini API Key 即可啟用 AI 智慧即時對話與糾錯功能：</p>
+            <input type="password" id="api-key-input" placeholder="AIzaSy..." class="w-full bg-sakura-50 border border-sakura-200 rounded-xl px-3 py-2 text-xs focus:outline-none">
+            <div class="flex gap-2">
+                <button onclick="saveApiKey()" class="flex-1 bg-sakura-500 text-white font-bold py-2 rounded-xl text-xs">儲存</button>
+                <button onclick="closeApiKeyModal()" class="px-3 bg-gray-100 text-gray-600 font-bold py-2 rounded-xl text-xs">關閉</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Application Engine -->
+    <script>
+        // Kana to Accurate Romaji Phonetic Mapping Engine
+        const kanaRomajiMap = {
+            'あ':'a','い':'i','う':'u','え':'e','お':'o',
+            'か':'ka','き':'ki','く':'ku','け':'ke','こ':'ko',
+            'さ':'sa','し':'shi','す':'su','せ':'se','そ':'so',
+            'た':'ta','ち':'chi','つ':'tsu','て':'te','と':'to',
+            'な':'na','に':'ni','ぬ':'nu','ね':'ne','の':'no',
+            'は':'ha','ひ':'hi','ふ':'fu','へ':'he','ほ':'ho',
+            'ま':'ma','み':'mi','む':'mu','め':'me','も':'mo',
+            'や':'ya','ゆ':'yu','よ':'yo',
+            'ら':'ra','り':'ri','る':'ru','れ':'re','ろ':'ro',
+            'わ':'wa','を':'wo','ん':'n',
+            'が':'ga','ぎ':'gi','ぐ':'gu','げ':'ge','ご':'go',
+            'ざ':'za','じ':'ji','ず':'zu','ぜ':'ze','ぞ':'zo',
+            'だ':'da','ぢ':'ji','づ':'zu','で':'de','ど':'do',
+            'ば':'ba','び':'bi','ぶ':'bu','べ':'be','ぼ':'bo',
+            'ぱ':'pa','ぴ':'pi','ぷ':'pu','ぺ':'pe','ぽ':'po',
+            'きゃ':'kya','きゅ':'kyu','きょ':'kyo',
+            'しゃ':'sha','しゅ':'shu','しょ':'sho',
+            'ちゃ':'cha','ちゅ':'chu','ちょ':'cho',
+            'にゃ':'nya','にゅ':'nyu','にょ':'nyo',
+            'ひゃ':'hya','ひゅ':'hyu','ひょ':'hyo',
+            'みゃ':'mya','みゅ':'myu','みょ':'myo',
+            'りゃ':'rya','りゅ':'ryu','りょ':'ryo'
+        };
+
+        function getAccurateRomaji(kana) {
+            if (!kana) return '';
+            let result = '';
+            let i = 0;
+            while (i < kana.length) {
+                if (i + 1 < kana.length) {
+                    const pair = kana.substring(i, i + 2);
+                    if (kanaRomajiMap[pair]) {
+                        result += kanaRomajiMap[pair];
+                        i += 2;
+                        continue;
+                    }
+                }
+                const single = kana.charAt(i);
+                result += kanaRomajiMap[single] || single;
+                i++;
+            }
+            return result;
+        }
+
+        // Global State
+        const state = {
+            activeTab: 'map',
+            apiKey: localStorage.getItem('gemini_api_key') || '',
+            savedWords: JSON.parse(localStorage.getItem('saved_jp_words') || '[]'),
+            userXP: parseInt(localStorage.getItem('user_xp') || '120'),
+            streak: parseInt(localStorage.getItem('user_streak') || '1'),
+            currentDictWord: null,
+            quizState: {
+                score: 0,
+                combo: 0,
+                lives: 3,
+                currentIdx: 0,
+                questions: []
+            },
+            isRecording: false,
+            recognition: null,
+            isSpeaking: false
+        };
+
+        // Gamified Stages Roadmap (Level 0 -> Level 8)
+        const stagesData = [
+            {
+                id: 0,
+                title: 'STAGE 0 · 五十音與音調發音基底',
+                desc: '學習清音、濁音、拗音與日文高低音調 Pitch Accent',
+                icon: '🌸',
+                unlocked: true,
+                stars: 3,
+                words: [
+                    { word: '水', kana: 'みず', romaji: 'mizu', pos: '名詞', meaning: '水', exampleJp: 'お水をください。', exampleZh: '請給我水。' },
+                    { word: '猫', kana: 'ねこ', romaji: 'neko', pos: '名詞', meaning: '貓咪', exampleJp: '可愛い猫がいます。', exampleZh: '有一隻可愛的貓。' },
+                    { word: '犬', kana: 'いぬ', romaji: 'inu', pos: '名詞', meaning: '狗狗', exampleJp: '犬と散歩します。', exampleZh: '和狗一起散步。' }
+                ]
+            },
+            {
+                id: 1,
+                title: 'STAGE 1 · 日常打招呼與自我介紹',
+                desc: '初次見面、感謝、抱歉與基本破冰語句',
+                icon: '🙋‍♂️',
+                unlocked: true,
+                stars: 2,
+                words: [
+                    { word: '初めまして', kana: 'はじめまして', romaji: 'hajimemashite', pos: '寒暄語', meaning: '初次見面', exampleJp: '初めまして、田中です。', exampleZh: '初次見面，我是田中。' },
+                    { word: 'ありがとう', kana: 'ありがとう', romaji: 'arigatou', pos: '寒暄語', meaning: '謝謝', exampleJp: 'いつもありがとう！', exampleZh: '總是謝謝你！' },
+                    { word: 'すみません', kana: 'すみません', romaji: 'sumimasen', pos: '寒暄語', meaning: '不好意思/對不起', exampleJp: 'すみません、注文をお願いします。', exampleZh: '不好意思，我要點餐。' }
+                ]
+            },
+            {
+                id: 2,
+                title: 'STAGE 2 · 數字、時間與日期計數',
+                desc: '日本數字表達、幾點幾分、星期與月日計算',
+                icon: '🔢',
+                unlocked: true,
+                stars: 1,
+                words: [
+                    { word: 'ひとつ', kana: 'ひとつ', romaji: 'hitotsu', pos: '量詞', meaning: '一個', exampleJp: 'これをひとつください。', exampleZh: '請給我一個這個。' },
+                    { word: '今日', kana: 'きょう', romaji: 'kyou', pos: '名詞', meaning: '今天', exampleJp: '今日はいい天気ですね。', exampleZh: '今天天氣真好呢。' },
+                    { word: '時間', kana: 'じかん', romaji: 'jikan', pos: '名詞', meaning: '時間', exampleJp: '時間がありません。', exampleZh: '沒有時間了。' }
+                ]
+            },
+            {
+                id: 3,
+                title: 'STAGE 3 · 美食點餐與居酒屋用語',
+                desc: '點餐、拉麵店、甜點、拉麵硬度與結帳表達',
+                icon: '🍜',
+                unlocked: true,
+                stars: 0,
+                words: [
+                    { word: '美味しい', kana: 'おいしい', romaji: 'oishii', pos: '形容詞', meaning: '美味好吃的', exampleJp: 'このラーメンは美味しいです。', exampleZh: '這碗拉麵很好吃。' },
+                    { word: 'おすすめ', kana: 'おすすめ', romaji: 'osusume', pos: '名詞', meaning: '推薦料理', exampleJp: '今日のおすすめは何ですか？', exampleZh: '今天推薦的是什麼？' },
+                    { word: '会計', kana: 'かいけい', romaji: 'kaikei', pos: '名詞', meaning: '結帳', exampleJp: 'お会計をお願いします。', exampleZh: '請幫我結帳。' }
+                ]
+            },
+            {
+                id: 4,
+                title: 'STAGE 4 · 便利商店、購物與交通搭乘',
+                desc: '日本便利商店問答、買東西折扣與搭地鐵公車',
+                icon: '🏪',
+                unlocked: false,
+                stars: 0,
+                words: [
+                    { word: '袋', kana: 'ふくろ', romaji: 'fukuro', pos: '名詞', meaning: '袋子', exampleJp: '袋はいりません。', exampleZh: '不需要袋子。' },
+                    { word: 'いくら', kana: 'いくら', romaji: 'ikura', pos: '疑問詞', meaning: '多少錢', exampleJp: 'これはいくらですか？', exampleZh: '這個多少錢？' },
+                    { word: '駅', kana: 'えき', romaji: 'eki', pos: '名詞', meaning: '車站', exampleJp: '東京駅はどこですか？', exampleZh: '東京表車站在哪裡？' }
+                ]
+            },
+            {
+                id: 5,
+                title: 'STAGE 5 · 旅遊探索與飯店住宿',
+                desc: '飯店 Check-in、行李寄放與問路自由行',
+                icon: '⛩️',
+                unlocked: false,
+                stars: 0,
+                words: [
+                    { word: '予約', kana: 'よやく', romaji: 'yoyaku', pos: '名詞', meaning: '預約/訂房', exampleJp: '予約した田中です。', exampleZh: '我是有預約的田中。' },
+                    { word: '荷物', kana: 'にもつ', romaji: 'nimotsu', pos: '名詞', meaning: '行李', exampleJp: '荷物を預かってもらえますか？', exampleZh: '可以幫我寄放行李嗎？' }
+                ]
+            },
+            {
+                id: 6,
+                title: 'STAGE 6 · 工作職場、天氣與日常交流',
+                desc: '職場辦公用語、天氣變化與社交情緒表達',
+                icon: '💼',
+                unlocked: false,
+                stars: 0,
+                words: [
+                    { word: '仕事', kana: 'しごと', romaji: 'shigoto', pos: '名詞', meaning: '工作', exampleJp: '今日もお仕事お疲れ様です。', exampleZh: '今天工作也辛苦了。' },
+                    { word: '晴れ', kana: 'はれ', romaji: 'hare', pos: '名詞', meaning: '晴天', exampleJp: '明日は晴れでしょう。', exampleZh: '明天應該會是晴天吧。' }
+                ]
+            },
+            {
+                id: 7,
+                title: 'STAGE 7 · 動漫影視名言與日本流行語',
+                desc: '動漫經典台詞、Young口語與流行文化用語',
+                icon: '⚔️',
+                unlocked: false,
+                stars: 0,
+                words: [
+                    { word: '仲間', kana: 'なかま', romaji: 'nakama', pos: '名詞', meaning: '夥伴/同伴', exampleJp: 'お前は俺の仲間だ！', exampleZh: '你是我的夥伴！' },
+                    { word: 'やばい', kana: 'やばい', romaji: 'yabai', pos: '形容詞', meaning: '太強了/糟了/超讚', exampleJp: 'この映画、マジでやばい！', exampleZh: '這部電影真的太扯了！' }
+                ]
+            },
+            {
+                id: 8,
+                title: 'STAGE 8 · 時事、新聞閱讀與深度篇章',
+                desc: 'NHK 時事新聞、深度日文閱讀與全句結構解析',
+                icon: '📰',
+                unlocked: false,
+                stars: 0,
+                words: [
+                    { word: '文化', kana: 'ぶんか', romaji: 'bunka', pos: '名詞', meaning: '文化', exampleJp: '日本の傳統文化を試す。', exampleZh: '體驗日本傳統文化。' },
+                    { word: '急速', kana: 'きゅうそく', romaji: 'kyuusoku', pos: '名詞', meaning: '迅速/快速', exampleJp: '技術が急速に進歩する。', exampleZh: '技術快速進步。' }
+                ]
+            }
+        ];
+
+        // Multi-Theme Catalog Data
+        const themeCategories = [
+            {
+                id: 'food',
+                title: '🍱 日本美食與居酒屋點餐必備',
+                items: [
+                    { jp: '生ビールをひとつお願いします。', kana: 'なまびーるをひとつおねがいします', romaji: 'namabeeru wo hitotsu onegaishimasu', zh: '請給我一杯生啤酒。' },
+                    { jp: 'お会計は別々でできますか？', kana: 'おかいけいはべつべつでできますか', romaji: 'okaikei wa betsubetsu de dekimasu ka', zh: '請問可以分開結帳嗎？' }
+                ]
+            },
+            {
+                id: 'anime',
+                title: '⚔️ 熱血動漫與電影名言句型',
+                items: [
+                    { jp: 'あきらめたらそこで試合終了ですよ。', kana: 'あきらめたらそこでしあいしゅうりょうですよ', romaji: 'akirametara sokode shiai shuuryou desu yo', zh: '現在放棄的話，比賽就結束了喔。（灌籃高手）' },
+                    { jp: '全集中、水の呼吸！', kana: 'ぜんしゅうちゅう、みずのこきゅう', romaji: 'zenshuuchuu, mizu no kokyuu', zh: '全集中，水之呼吸！（鬼滅之刃）' }
+                ]
+            },
+            {
+                id: 'travel',
+                title: '⛩️ 日本自由行與交通問路',
+                items: [
+                    { jp: '写真を撮ってもらえませんか？', kana: 'しゃしんをついってもらえませんか', romaji: 'shashin wo torotte moraemasen ka', zh: '能幫我們拍張照片嗎？' },
+                    { jp: 'この電車は京都に行きますか？', kana: 'このでんしゃはきょうとにいきますか', romaji: 'kono densha wa kyouto ni ikimasu ka', zh: '這班電車有去京都嗎？' }
+                ]
+            },
+            {
+                id: 'news',
+                title: '📰 日本時事新聞閱讀短篇',
+                items: [
+                    { jp: '今年、日本を訪れる外国人観光客が急増しています。', kana: 'ことし、にほんをおとずれるがいこくじんかんこうきゃくがきゅうぞうしています', romaji: 'kotoshi, nihon wo otozureru gaikokujin kankoukyaku ga kyuuzou shite imasu', zh: '今年造訪日本的外國觀光客正在急劇增加。' }
+                ]
+            }
+        ];
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderRoadmap();
+            renderThemeContent('all');
+            renderSavedWords();
+            setupQuizQuestions();
+            setupSpeechRecognition();
+            updateUserHeaderStats();
+        });
+
+        // Tab Navigation Switch
+        function switchTab(tabId) {
+            state.activeTab = tabId;
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.getElementById(`tab-${tabId}`).classList.remove('hidden');
+
+            // Desktop Tab Button Highlight
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.className = 'nav-btn px-4 py-2 rounded-xl font-bold text-xs text-gray-600 hover:bg-sakura-50 flex items-center gap-2';
+            });
+            const activeNav = document.getElementById(`nav-${tabId}`);
+            if (activeNav) {
+                activeNav.className = 'nav-btn px-4 py-2 rounded-xl font-bold text-xs text-sakura-600 bg-sakura-100 flex items-center gap-2';
+            }
+
+            // Mobile Tab Highlight
+            document.querySelectorAll('[id^="m-nav-"]').forEach(btn => {
+                btn.className = 'flex flex-col items-center gap-0.5 text-gray-400';
+            });
+            const mNav = document.getElementById(`m-nav-${tabId}`);
+            if (mNav) {
+                mNav.className = 'flex flex-col items-center gap-0.5 text-sakura-600';
+            }
+
+            if (tabId === 'game') {
+                startQuizGame();
+            }
+        }
+
+        // Render Stage Quest Roadmap Tree
+        function renderRoadmap() {
+            const container = document.getElementById('roadmap-tree');
+            container.innerHTML = stagesData.map((stage, idx) => `
+                <div class="w-full">
+                    <div class="cute-card rounded-2xl p-4 bg-white flex items-center justify-between touch-bounce cursor-pointer ${stage.unlocked ? '' : 'opacity-60 bg-gray-50'}" onclick="openStageLesson(${stage.id})">
+                        <div class="flex items-center gap-3">
+                            <div class="w-12 h-12 rounded-2xl ${stage.unlocked ? 'bg-sakura-100 text-sakura-600' : 'bg-gray-200 text-gray-400'} flex items-center justify-center text-2xl font-black">
+                                ${stage.icon}
+                            </div>
+                            <div>
+                                <div class="flex items-center gap-2">
+                                    <h4 class="font-extrabold text-sm sm:text-base text-gray-800">${stage.title}</h4>
+                                </div>
+                                <p class="text-[11px] text-gray-500 line-clamp-1">${stage.desc}</p>
+                            </div>
+                        </div>
+
+                        <div class="text-right flex-shrink-0">
+                            ${stage.unlocked ? `
+                                <div class="text-dango text-xs">
+                                    ${'★'.repeat(stage.stars)}${'☆'.repeat(3 - stage.stars)}
+                                </div>
+                                <span class="bg-matcha-100 text-matcha-600 text-[10px] font-bold px-2 py-0.5 rounded-full mt-1 inline-block">開始關卡</span>
+                            ` : `
+                                <span class="bg-gray-200 text-gray-500 text-[10px] font-bold px-2 py-0.5 rounded-full"><i class="fa-solid fa-lock"></i> 未解鎖</span>
+                            `}
+                        </div>
+                    </div>
+                    ${idx < stagesData.length - 1 ? '<div class="stage-connector"></div>' : ''}
+                </div>
+            `).join('');
+        }
+
+        // Open Stage Lesson
+        function openStageLesson(stageId) {
+            const stage = stagesData.find(s => s.id === stageId);
+            if (!stage || !stage.unlocked) {
+                alert('🔒 該關卡尚未解鎖！請先完成前方關卡挑戰。');
+                return;
+            }
+
+            const firstWord = stage.words[0];
+            if (firstWord) {
+                lookupWord(firstWord.word, firstWord.kana, firstWord.romaji, firstWord.pos, firstWord.meaning, firstWord.exampleJp, firstWord.exampleZh);
+            }
+        }
+
+        // Quiz & Game Adventure Mechanics
+        function setupQuizQuestions() {
+            let qList = [];
+            stagesData.forEach(s => {
+                s.words.forEach(w => {
+                    qList.push({
+                        category: s.title,
+                        jp: w.word,
+                        kana: w.kana,
+                        romaji: getAccurateRomaji(w.kana),
+                        correct: w.meaning,
+                        options: shuffleArray([w.meaning, '感謝', '水', '好吃', '再見', '多少錢', '車站']).slice(0, 4)
+                    });
+                });
+            });
+            state.quizState.questions = shuffleArray(qList);
+        }
+
+        function startQuizGame() {
+            state.quizState.score = 0;
+            state.quizState.combo = 0;
+            state.quizState.lives = 3;
+            state.quizState.currentIdx = 0;
+
+            document.getElementById('quiz-container').classList.remove('hidden');
+            document.getElementById('game-over-box').classList.add('hidden');
+            updateGameUI();
+            loadNextQuizQuestion();
+        }
+
+        function loadNextQuizQuestion() {
+            const q = state.quizState.questions[state.quizState.currentIdx];
+            if (!q || state.quizState.lives <= 0) {
+                endQuizGame();
+                return;
+            }
+
+            document.getElementById('quiz-category').innerText = q.category;
+            document.getElementById('quiz-question-jp').innerText = q.jp;
+            document.getElementById('quiz-question-kana').innerText = `${q.kana} (${q.romaji})`;
+
+            // Generate option buttons
+            if (!q.options.includes(q.correct)) {
+                q.options[0] = q.correct;
+                q.options = shuffleArray(q.options);
+            }
+
+            const optionsContainer = document.getElementById('quiz-options');
+            optionsContainer.innerHTML = q.options.map(opt => `
+                <button onclick="submitQuizAnswer('${opt}')" class="bg-sakura-50 hover:bg-sakura-100 border-2 border-sakura-200 text-gray-800 font-bold py-3.5 px-4 rounded-2xl text-xs sm:text-sm transition touch-bounce shadow-sm">
+                    ${opt}
+                </button>
+            `).join('');
+
+            playAudioText(q.jp);
+        }
+
+        function submitQuizAnswer(selected) {
+            const q = state.quizState.questions[state.quizState.currentIdx];
+            if (selected === q.correct) {
+                // Correct Answer
+                playBeepSound(600, 0.1);
+                state.quizState.score += 20 + (state.quizState.combo * 5);
+                state.quizState.combo += 1;
+                addXP(10);
+            } else {
+                // Wrong Answer
+                playBeepSound(200, 0.2);
+                state.quizState.lives -= 1;
+                state.quizState.combo = 0;
+            }
+
+            state.quizState.currentIdx += 1;
+            updateGameUI();
+
+            if (state.quizState.lives <= 0 || state.quizState.currentIdx >= state.quizState.questions.length) {
+                endQuizGame();
+            } else {
+                loadNextQuizQuestion();
+            }
+        }
+
+        function updateGameUI() {
+            document.getElementById('game-score').innerText = state.quizState.score;
+            document.getElementById('game-combo').innerText = state.quizState.combo;
+
+            let heartsHtml = '';
+            for (let i = 0; i < 3; i++) {
+                if (i < state.quizState.lives) {
+                    heartsHtml += '<i class="fa-solid fa-heart text-red-500"></i>';
+                } else {
+                    heartsHtml += '<i class="fa-regular fa-heart text-gray-300"></i>';
+                }
+            }
+            document.getElementById('game-lives').innerHTML = heartsHtml;
+        }
+
+        function endQuizGame() {
+            document.getElementById('quiz-container').classList.add('hidden');
+            document.getElementById('game-over-box').classList.remove('hidden');
+            document.getElementById('final-score').innerText = state.quizState.score;
+            document.getElementById('final-xp').innerText = `+${Math.floor(state.quizState.score / 2)} XP`;
+        }
+
+        // Web Audio API Synthesizer for Fun Game Sound Effects
+        function playBeepSound(freq, duration) {
+            try {
+                const ctx = new (window.AudioContext || window.webkitAudioContext)();
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc.type = 'sine';
+                osc.frequency.value = freq;
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+                osc.start();
+                gain.gain.exponentialRampToValueAtTime(0.00001, ctx.currentTime + duration);
+                setTimeout(() => ctx.close(), duration * 1000 + 100);
+            } catch (e) {}
+        }
+
+        function renderThemeContent(cat) {
+            const container = document.getElementById('theme-cards-container');
+            const filtered = cat === 'all' 
+                ? themeCategories 
+                : themeCategories.filter(t => t.id === cat);
+
+            container.innerHTML = filtered.map(theme => `
+                <div class="cute-card rounded-2xl p-4 sm:p-5 bg-white space-y-3">
+                    <h3 class="font-extrabold text-sm sm:text-base text-gray-800 border-b border-sakura-100 pb-2">${theme.title}</h3>
+                    <div class="space-y-2.5">
+                        ${theme.items.map(item => `
+                            <div class="bg-sakura-50/70 p-3 rounded-2xl border border-sakura-100 flex items-center justify-between gap-2">
+                                <div class="space-y-0.5">
+                                    <div class="font-bold text-sm text-gray-800">
+                                        <span class="jp-word" onclick="lookupWord('${item.jp}', '${item.kana}', '${item.romaji}', '句型', '${item.zh}')">${item.jp}</span>
+                                    </div>
+                                    <div class="text-[11px] text-sakura-600 font-bold">${item.kana} (${item.romaji})</div>
+                                    <div class="text-xs text-gray-500">${item.zh}</div>
+                                </div>
+                                <button onclick="playAudioText('${item.jp}', event)" class="w-9 h-9 bg-sakura-500 hover:bg-sakura-600 text-white rounded-xl flex items-center justify-center flex-shrink-0 touch-bounce">
+                                    <i class="fa-solid fa-volume-high text-xs"></i>
+                                </button>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `).join('');
+
+            // Highlight category buttons
+            document.querySelectorAll('.theme-tab-btn').forEach(b => {
+                b.className = 'theme-tab-btn bg-gray-100 text-gray-600 px-3 py-1.5 rounded-xl text-xs font-bold whitespace-nowrap';
+            });
+            if (event && event.target) {
+                event.target.className = 'theme-tab-btn bg-sakura-500 text-white px-3 py-1.5 rounded-xl text-xs font-bold whitespace-nowrap';
+            }
+        }
+
+        // Popup Dictionary & Phonetic Lookup Modal
+        function lookupWord(word, kana, romaji, pos, meaning, exJp, exZh) {
+            const accurateRomaji = romaji || getAccurateRomaji(kana || word);
+            state.currentDictWord = { word, kana: kana || word, romaji: accurateRomaji, pos: pos || '單字', meaning: meaning || '解釋' };
+
+            document.getElementById('dict-word').innerText = word;
+            document.getElementById('dict-kana').innerText = kana || word;
+            document.getElementById('dict-romaji').innerText = accurateRomaji;
+            document.getElementById('dict-pos').innerText = pos || '單字';
+            document.getElementById('dict-meaning').innerText = meaning || '點擊朗讀發音';
+
+            document.getElementById('dict-example-jp').innerText = exJp || `${word}を使います。`;
+            document.getElementById('dict-example-zh').innerText = exZh || `（使用「${word}」來表達。）`;
+
+            document.getElementById('dict-modal').classList.remove('hidden');
+            playAudioText(word);
+        }
+
+        function closeDictModal() {
+            document.getElementById('dict-modal').classList.add('hidden');
+        }
+
+        function playCurrentDictAudio(e) {
+            if (e) e.stopPropagation();
+            if (state.currentDictWord) {
+                playAudioText(state.currentDictWord.word);
+            }
+        }
+
+        // Single Speech Audio Player (Prevents Duplicate Playback)
+        function playAudioText(text, event) {
+            if (event) event.stopPropagation(); // Avoid double event trigger
+            if (!('speechSynthesis' in window)) return;
+
+            window.speechSynthesis.cancel(); // Cancel any ongoing speech cleanly
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'ja-JP';
+            utterance.rate = 0.88;
+            window.speechSynthesis.speak(utterance);
+        }
+
+        // Saved Words Storage Engine
+        function saveCurrentWord() {
+            if (!state.currentDictWord) return;
+            const exists = state.savedWords.some(w => w.word === state.currentDictWord.word);
+            if (!exists) {
+                state.savedWords.push(state.currentDictWord);
+                localStorage.setItem('saved_jp_words', JSON.stringify(state.savedWords));
+                renderSavedWords();
+                addXP(15);
+                alert(`✨ 已收錄「${state.currentDictWord.word}」至單字筆記！`);
+            } else {
+                alert(`🌸 「${state.currentDictWord.word}」已經在筆記庫裡囉！`);
+            }
+            closeDictModal();
+        }
+
+        function renderSavedWords() {
+            const container = document.getElementById('saved-words-grid');
+            if (state.savedWords.length === 0) {
+                container.innerHTML = `
+                    <div class="col-span-full cute-card rounded-2xl p-6 text-center text-gray-400 space-y-1">
+                        <div class="text-3xl">🌸</div>
+                        <p class="text-xs font-bold">筆記庫還是空的喔！</p>
+                        <p class="text-[10px]">點擊任何文章或例句中的單字即可隨時收藏。</p>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = state.savedWords.map((item, idx) => `
+                <div class="cute-card rounded-2xl p-3.5 bg-white space-y-1.5 relative border-sakura-100">
+                    <div class="flex justify-between items-start">
+                        <span class="text-[10px] bg-sakura-100 text-sakura-600 font-bold px-2 py-0.5 rounded">${item.pos || '單字'}</span>
+                        <button onclick="removeSavedWord(${idx})" class="text-gray-300 hover:text-red-400 text-xs">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
+                    </div>
+                    <div class="flex items-baseline justify-between">
+                        <h4 class="text-lg font-extrabold text-gray-800">${item.word}</h4>
+                        <span class="text-xs text-sakura-500 font-bold">${item.kana}</span>
+                    </div>
+                    <p class="text-[11px] text-gray-400 font-semibold">${item.romaji}</p>
+                    <p class="text-xs text-gray-700 font-bold">${item.meaning}</p>
+                    <button onclick="playAudioText('${item.word}', event)" class="w-full bg-sakura-50 hover:bg-sakura-100 text-sakura-600 font-bold py-1.5 rounded-xl text-xs flex items-center justify-center gap-1 transition">
+                        <i class="fa-solid fa-volume-high text-xs"></i> 朗讀發音
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        function removeSavedWord(idx) {
+            state.savedWords.splice(idx, 1);
+            localStorage.setItem('saved_jp_words', JSON.stringify(state.savedWords));
+            renderSavedWords();
+        }
+
+        function clearSavedWords() {
+            if (confirm('確定要清空所有單字筆記嗎？')) {
+                state.savedWords = [];
+                localStorage.removeItem('saved_jp_words');
+                renderSavedWords();
+            }
+        }
+
+        // Speech Recognition Setup
+        function setupSpeechRecognition() {
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            if (SpeechRecognition) {
+                state.recognition = new SpeechRecognition();
+                state.recognition.lang = 'ja-JP';
+                state.recognition.onresult = (e) => {
+                    const text = e.results[0][0].transcript;
+                    document.getElementById('chat-text-input').value = text;
+                    sendChatMessage();
+                };
+                state.recognition.onend = () => {
+                    state.isRecording = false;
+                    document.getElementById('record-btn').classList.remove('recording-active');
+                };
+            }
+        }
+
+        function toggleVoiceRecording() {
+            if (!state.recognition) {
+                alert('您的瀏覽器未支援語音辨識，請使用 Chrome 瀏覽器開啓！');
+                return;
+            }
+            if (state.isRecording) {
+                state.recognition.stop();
+            } else {
+                state.isRecording = true;
+                document.getElementById('record-btn').classList.add('recording-active');
+                state.recognition.start();
+            }
+        }
+
+        // AI Speaking Chat Logic
+        async function sendChatMessage() {
+            const input = document.getElementById('chat-text-input');
+            const msg = input.value.trim();
+            if (!msg) return;
+
+            input.value = '';
+            appendChatMessage('user', msg);
+            const thinkingId = appendChatMessage('ai', '🍡 糰子老師正在思考中...');
+
+            try {
+                let aiText = '';
+                if (state.apiKey) {
+                    const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${state.apiKey}`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            contents: [{ parts: [{ text: `你是一位活潑親切的日文老師「糰子老師」。學生說了：「${msg}」。請用日文自然回應，附上假名與中文說明。` }] }]
+                        })
+                    });
+                    const data = await res.json();
+                    aiText = data.candidates?.[0]?.content?.parts?.[0]?.text || "素晴らしいです！繼續保持練習喔！";
+                } else {
+                    await new Promise(r => setTimeout(r, 800));
+                    aiText = `「${msg}」ですね！上手です！\n（説得真好呢！繼續保持喔！）`;
+                }
+
+                document.getElementById(thinkingId).innerText = aiText;
+                playAudioText(aiText.split('\n')[0]);
+                addXP(10);
+            } catch (err) {
+                document.getElementById(thinkingId).innerText = "上手ですね！說得很棒！繼續跟我練習吧～";
+            }
+        }
+
+        function appendChatMessage(role, text) {
+            const container = document.getElementById('chat-messages');
+            const msgId = 'msg-' + Date.now();
+            if (role === 'user') {
+                container.innerHTML += `
+                    <div class="flex gap-2 justify-end">
+                        <div class="bg-sakura-500 text-white rounded-2xl p-3 text-xs max-w-[85%] shadow-xs">
+                            <p>${text}</p>
+                        </div>
+                    </div>
+                `;
+            } else {
+                container.innerHTML += `
+                    <div class="flex gap-2.5">
+                        <div class="w-8 h-8 rounded-2xl bg-sakura-200 text-sakura-600 flex items-center justify-center text-sm font-black flex-shrink-0">🍡</div>
+                        <div class="bg-sakura-50 border border-sakura-200 rounded-2xl p-3 text-gray-800 max-w-[85%] space-y-1">
+                            <p id="${msgId}" class="whitespace-pre-line">${text}</p>
+                        </div>
+                    </div>
+                `;
+            }
+            container.scrollTop = container.scrollHeight;
+            return msgId;
+        }
+
+        // Helper Utility Functions
+        function shuffleArray(arr) {
+            return arr.sort(() => Math.random() - 0.5);
+        }
+
+        function addXP(amount) {
+            state.userXP += amount;
+            localStorage.setItem('user_xp', state.userXP);
+            updateUserHeaderStats();
+        }
+
+        function updateUserHeaderStats() {
+            document.getElementById('user-xp').innerText = state.userXP;
+            document.getElementById('user-streak').innerText = state.streak;
+        }
+
+        function openApiKeyModal() {
+            document.getElementById('apikey-modal').classList.remove('hidden');
+        }
+
+        function closeApiKeyModal() {
+            document.getElementById('apikey-modal').classList.add('hidden');
+        }
+
+        function saveApiKey() {
+            const val = document.getElementById('api-key-input').value.trim();
+            state.apiKey = val;
+            localStorage.setItem('gemini_api_key', val);
+            closeApiKeyModal();
+            alert('API Key 設定完畢！已開啟 AI 智慧對話功能。');
+        }
+    </script>
+</body>
+</html>
